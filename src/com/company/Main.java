@@ -1,5 +1,10 @@
 package com.company;
 
+import com.company.BridgeDemo.DunlopTyreMaker;
+import com.company.BridgeDemo.PirelliTyreMaker;
+import com.company.BridgeDemo.RacingSlickTyre;
+import com.company.BridgeDemo.SuperSportTyre;
+import com.company.BridgeDemo.TyreType;
 import com.company.FactoryDemo.Motorcycle;
 import com.company.FactoryDemo.MotorcycleFactory;
 
@@ -13,6 +18,16 @@ public class Main {
         System.out.println("Factory Kawasaki Config::"+kawa);
         System.out.println("Factory Yamaha Config::"+yammie);
         System.out.println("---END OF FACTORY PATTERN---");
+
+        System.out.println("----------------------------");
+
+        System.out.println("---START OF BRIDGE DESIGN PATTERN---");
+        TyreType slicks = new RacingSlickTyre(new DunlopTyreMaker());
+        slicks.addTyreMaker();
+        TyreType supersport = new SuperSportTyre(new PirelliTyreMaker());
+        supersport.addTyreMaker();
+        System.out.println("---END OF BRIDGE DESIGN PATTERN---");
+
         // 1 behavioral
         // 1 structural
         // 4 non-creational in total
