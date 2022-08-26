@@ -27,8 +27,8 @@ public class Main {
         System.out.println("-----------------------------------");
         //Creational 1
         System.out.println("Creating Base Motorcycles with FACTORY PATTERN");
-        Motorcycle kawa = MotorcycleFactory.getMotorcycle("Kawasaki","636cc","plastic","zx11rr");
-        Motorcycle yammie = MotorcycleFactory.getMotorcycle("Yamaha","1000cc","carbon","r1");
+        Motorcycle kawa = MotorcycleFactory.getMotorcycle("Kawasaki","1000cc","fiberglass","zx10rr");
+        Motorcycle yammie = MotorcycleFactory.getMotorcycle("Yamaha","1000cc","carbon","YZF R1");
         System.out.println("Factory Kawasaki Config::"+kawa);
         System.out.println("Factory Yamaha Config::"+yammie);
         System.out.println("-----------------------------------");
@@ -48,6 +48,7 @@ public class Main {
         System.out.println("\n");
         Sportbike upgradedWSBKBike = new WSBKSpecBike(new UpgradedBike(new BasicSportbike()));
         upgradedWSBKBike.assemble();
+        System.out.println("\n");
         System.out.println("-----------------------------------");
 
         //Behavioral
@@ -57,7 +58,7 @@ public class Main {
         EngineState stopEngine = new EngineStopState();
         context.setState(stopEngine);
         context.checkEngineState();
-        context.setState(stopEngine);
+        context.setState(startEngine);
         context.checkEngineState();
         System.out.println("-----------------------------------");
 
