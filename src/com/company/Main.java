@@ -26,60 +26,57 @@ public class Main {
         System.out.println("Hello, this is a demo of OODPs");
         System.out.println("-----------------------------------");
         //Creational 1
-        System.out.println("---START OF FACTORY PATTERN---");
-
-        Motorcycle kawa = MotorcycleFactory.getMotorcycle("Kawasaki","636cc","plastic","zx6r");
+        System.out.println("Creating Base Motorcycles with FACTORY PATTERN");
+        Motorcycle kawa = MotorcycleFactory.getMotorcycle("Kawasaki","636cc","plastic","zx11rr");
         Motorcycle yammie = MotorcycleFactory.getMotorcycle("Yamaha","1000cc","carbon","r1");
         System.out.println("Factory Kawasaki Config::"+kawa);
         System.out.println("Factory Yamaha Config::"+yammie);
-
-        System.out.println("---END OF FACTORY PATTERN---");
         System.out.println("-----------------------------------");
-        //Structural 1
-        System.out.println("---START OF BRIDGE DESIGN PATTERN---");
 
+        //Structural 1
+        System.out.println("Adding Tyres to Motorcycles using BRIDGE DESIGN PATTERN ");
         TyreType slicks = new RacingSlickTyre(new DunlopTyreMaker());
         slicks.addTyreMaker();
         TyreType supersport = new SuperSportTyre(new PirelliTyreMaker());
         supersport.addTyreMaker();
-
-        System.out.println("---END OF BRIDGE DESIGN PATTERN---");
         System.out.println("-----------------------------------");
-        //Behavioral 2
-        System.out.println("---START OF MEDIATOR DESIGN PATTERN---");
 
-        RaceTeamMediator mediator = new RaceTeamMediatorImpl();
-        TeamMember rossi = new TeamMemberImpl(mediator,"Valentino Rossi");
-        TeamMember fabio = new TeamMemberImpl(mediator,"Fabio Quartararo");
-        TeamMember marco  = new TeamMemberImpl(mediator,"Marco Bezzecchi");
-        TeamMember luca = new TeamMemberImpl(mediator,"Luca Marini");
-        mediator.addTeamMember(rossi);
-        mediator.addTeamMember(fabio);
-        mediator.addTeamMember(marco);
-        mediator.addTeamMember(luca);
-        rossi.send("Race Race Race!");
-
-        System.out.println("---END OF MEDIATOR DESIGN PATTERN---");
-        System.out.println("-----------------------------------");
         //Structural 2
-        System.out.println("---START OF DECORATOR DESIGN PATTERN---");
-
+        System.out.println("Upgrading  Motorcycles using DECORATOR DESIGN PATTERN ");
         Sportbike upgraded = new UpgradedBike(new BasicSportbike());
         upgraded.assemble();
         System.out.println("\n");
         Sportbike upgradedWSBKBike = new WSBKSpecBike(new UpgradedBike(new BasicSportbike()));
         upgradedWSBKBike.assemble();
-        System.out.println("\n---END OF DECORATOR DESIGN PATTERN---");
         System.out.println("-----------------------------------");
-        //Behavioral 2
-        System.out.println("---START OF STATE DESIGN PATTERN---");
+
+        //Behavioral
+        System.out.println("Checking Engine state before race using  using STATE DESIGN PATTERN");
         EngineContext context = new EngineContext();
         EngineState startEngine = new EngineStartState();
         EngineState stopEngine = new EngineStopState();
-        context.setState(startEngine);
+        context.setState(stopEngine);
         context.checkEngineState();
         context.setState(stopEngine);
         context.checkEngineState();
-        System.out.println("---END OF STATE DESIGN PATTERN---");
+        System.out.println("-----------------------------------");
+
+        //Behavioral
+        System.out.println("Giving the race start using MEDIATOR DESIGN PATTERN");
+        RaceTeamMediator mediator = new RaceTeamMediatorImpl();
+        TeamMember johnny = new TeamMemberImpl(mediator,"JONATHAN REA");
+        TeamMember toprak = new TeamMemberImpl(mediator,"TOPRAK RAZGATLIOGLU");
+        TeamMember alex  = new TeamMemberImpl(mediator,"ALEX LOWES");
+        TeamMember roberto = new TeamMemberImpl(mediator,"ROBERTO TAMBURINI");
+        mediator.addTeamMember(johnny);
+        mediator.addTeamMember(toprak);
+        mediator.addTeamMember(alex);
+        mediator.addTeamMember(roberto);
+        johnny.send("Race Race Race!");
+        System.out.println("-----------------------------------");
+        System.out.println("---Jonathan Rea Wins the race!---");
+        System.out.println("-----------------------------------");
+
+
     }
 }
